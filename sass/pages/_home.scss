@@ -1,0 +1,66 @@
+@use "../abstracts/variables" as vars;
+
+.section-about {
+    background-color: vars.$color-grey-light-1;
+    padding: 25rem 0;
+    margin-top: -20vh; // 20vh because that is the height of white space in header clip-path on the right
+}
+
+.section-features {
+    padding: 20rem 0;
+    background-image: linear-gradient(
+        to right,
+        rgba(vars.$color-primary-light, 0.8),
+        rgba(vars.$color-primary-dark, 0.8)
+      ),
+      url("../img/nat-4.jpg"); /* Linear gradient with the first color as the start and the second as the end */
+    background-size: cover;
+    // clip-path: polygon(0 0, 1f00% 0, 100% 75vh, 0 100%);
+    transform: skewY(-7deg); // skew => sesgar
+    // To fix the wide height visual effect caused by skew:
+    margin-top: -10rem; 
+
+    // Selects every element that is direct child of section-features
+    & > * {
+        transform: skewY(7deg);
+    }
+}
+
+.section-tours {
+    background-color: vars.$color-grey-light-1;
+    padding: 25rem 0 15rem 0; // need adjustaments
+    margin-top: -10rem; 
+}
+
+.section-stories {
+    padding: 15rem 0;
+    position: relative;
+}
+
+.section-book {
+    padding: 15rem 0;
+    background-image: linear-gradient(
+        to right bottom, 
+        vars.$color-primary-light, 
+        vars.$color-primary-dark
+    );
+}
+
+.book {
+    background-image: linear-gradient(
+            105deg,
+            rgba(vars.$color-white, .9) 0%,
+            rgba(vars.$color-white, .9) 50%,
+            transparent 50%), 
+        url(../img/nat-10.jpg);
+    background-size: 100%; // 100% means the same as 'cover'
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(vars.$color-black, 2); // posición de la sombra, color e intensidad
+
+    height: 50rem; // TODO: delete
+
+    &__form {
+        width: 50%;
+        padding: 6rem;
+    }
+}

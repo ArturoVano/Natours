@@ -1,0 +1,47 @@
+@use "../abstracts/variables" as variables;
+@use "../abstracts/mixings" as mix;
+
+/* Basic reset: */
+*,
+*::after,
+*::before {
+  /* Universal selector (has no especifity value (0,0,0,0)) */
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box;  Makes the width and height include the padding and border. */
+  box-sizing: inherit;
+}
+
+html {
+  // REMEMBER: rem will take as reference the given font-size of html element, for all the css properties!
+  /* This is a bad practise => font-size: 10px; (% respect the user browser font-size)*/
+  font-size: 62.5%; /* This defines what 1rem is 10px(0.625 * browser font-size) **/
+
+  
+  
+  @include mix.respond(tab-land) {
+    font-size: 56.25% // 1 rem = 9px, 9/16 = 56.25%;
+  }
+
+  @include mix.respond(tab-port) {
+    font-size: 50% // 1 rem = 8px, 8/16 = 50%;
+  }
+
+  // @include mix.respond(phone) {
+  //   font-size:  
+  // }
+
+  @include mix.respond(big-desktop) {
+    font-size: 75% // 1rem = 12 because 12/16 = 75%
+  }
+}
+
+body {
+  /* Put the global styles here and never in the universal selector */
+  padding: 3rem; /* Unlike font-family and the rest, padding is not inherited */
+  box-sizing: border-box;
+
+  @include mix.respond(tab-port) {
+    padding: 0;
+  }
+}

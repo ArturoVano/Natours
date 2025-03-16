@@ -1,0 +1,66 @@
+@use '../abstracts/variables' as var;
+
+.story {
+    width: 75%;
+    margin: 0 auto; // Remember, only works when this is a block element inside a block element
+    box-shadow: 0 3rem 6rem rgba(var.$color-black, .1);
+    background-color: rgba(var.$color-white, .6);
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: var.$default-font-size;
+    transform: skew(-12deg);
+
+    // & > * { don´t work for __shape cause already have a transform
+    //     transform: skew(12deg);
+    // }
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        // shape-outside defines where the content floats arould the element, in this case a circle
+        shape-outside: circle(50% at 50% 50%); // (Radious X Y)
+        // To really look like a circle
+        clip-path: circle(50% at 50% 50%);
+        // Remember: the best way to move an a float element is transform, not margins or others.
+        transform: translateX(-3rem) skew(12deg);
+        position: relative;
+    }
+    // Remember: for responsivity, img´s always need a width
+    &__img {
+        height: 100%;
+        // Center the img:
+        transform: translateX(-4rem) scale(1.4);
+        transition: all .5s;
+    }
+
+    &__text {
+        transform: skew(12deg);
+    }
+
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: var.$color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s;
+        // In the time, this solve a animation problem, now is gone:
+        // backface-visibility: hidden;
+    }
+
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%); // lower than 100% make it darker and lower make it brighter
+    }
+}

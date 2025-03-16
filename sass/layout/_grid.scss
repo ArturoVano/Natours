@@ -1,0 +1,65 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixings" as mix;
+
+.row {
+    /** If we have more than the px specified in our vp,
+     * then the element will take that specified width,
+     * but if is less, then will take the 100%
+     **/
+    max-width: vars.$grid-width;
+    // Trick to always center a element inside the parent block element:
+    margin: 0 auto;
+    // Because with auto the browser distribute the remaining space to left and right equitative
+
+    &:not(:last-child) {
+        margin-bottom: vars.$gutter-vertical;
+
+        @include mix.respond(tab-port) {
+            margin-bottom: vars.$gutter-vertical-small
+        }
+    }
+ 
+    @include mix.clearfix;
+
+    // Select all the element with class attribute and if the value starts with "col-"
+    [class^="col-"] {
+        float:left;
+
+        &:not(:last-child) {
+            margin-right: vars.$gutter-horizontal;
+
+            @include mix.respond(tab-port) {
+                margin-right: 0;
+                margin-bottom: vars.$gutter-vertical-small;
+            }
+        }
+
+        @include mix.respond(tab-port) {
+            width: 100% !important;
+        }
+    }
+
+    .col-1-of-2 {
+        width: calc((100% - #{vars.$gutter-horizontal}) / 2);
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2 * #{vars.$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc(2 * ((100% - 2 * #{vars.$gutter-horizontal}) / 3) + #{vars.$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3 * #{vars.$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-4 {
+        width: calc(2 * ((100% - 3 * #{vars.$gutter-horizontal}) / 4) + #{vars.$gutter-horizontal});
+    }
+    
+    .col-3-of-4 {
+        width: calc(3 * ((100% - 3 * #{vars.$gutter-horizontal}) / 4) + 2 * #{vars.$gutter-horizontal});
+    }
+}

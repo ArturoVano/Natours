@@ -1,0 +1,98 @@
+@use "../abstracts/variables" as variables;
+@use "../abstracts/mixings" as mix;
+
+body {
+  /* Put the global styles here and never in the universal selector */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7; /* Means that the line height will be 1.7 times bugger than the font size (16px * 1.7 = 24px) */
+  color: variables.$color-grey-dark-1;
+}
+
+
+.heading-primary {
+    color: variables.$color-white;
+    text-transform: uppercase;
+    /* Prevents the little shaking in the end of animation */
+    backface-visibility: hidden; /* Don´t use it when you want rotating animations */
+    margin-bottom: 6rem;
+
+    &--main {
+      display: block; /* Block elements occupy the full width of their container, and they create line breaks after and before them */
+      font-size: 6rem;
+      font-weight: 400;
+      letter-spacing: 3.5rem;
+    
+      animation-name: moveInLeft;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      /*
+        animation-iteration-count: 3;
+       animation-delay: 2s; 
+       */
+      @include mix.respond(phone) {
+        letter-spacing: 1rem;
+        font-size: 5rem;
+      }
+    }
+    
+    &--sub {
+      display: block; /* A span is a inline element, it will not create line breaks so we need to use block elements to create breaks */
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1.75rem;
+    
+      animation: moveInRigth 1s ease-out;
+
+      @include mix.respond(phone) {
+        letter-spacing: .5rem;
+      }
+    }
+}
+
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(
+    to right, 
+    variables.$color-primary-light, 
+    variables.$color-primary-dark
+  );
+  display: inline-block;
+  // The background clips exactly where the text is:
+  background-clip: text; 
+  color: transparent; // With this we will only see the bimage (cliped to the text)
+  letter-spacing: .2rem;
+  transition: all .2s;
+
+  @include mix.respond(tab-port) {
+    font-size: 3rem;
+  }
+
+  @include mix.respond(phone) {
+    font-size: 2.5rem;
+  }
+
+  &:hover {
+    // We already saw translate (x and y) and scale
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: .5rem 1rem 2rem rgba(variables.$color-black, .2);
+  }
+}
+
+.heading-tertiary {
+  font-size: variables.$default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: variables.$default-font-size;
+  
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}
