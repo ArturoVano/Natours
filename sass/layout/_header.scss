@@ -1,20 +1,43 @@
 @use "../abstracts/variables" as variables;
+@use "../abstracts/mixings" as mix;
+@use "../abstracts/functions" as fun;
 
 .header {
-    height: 95vh; /* 95% of the Viewport height */
-    background-image: linear-gradient(
-        to right,
-        rgba(variables.$color-primary-light, 0.8),
-        rgba(variables.$color-primary-dark, 0.8)
-      ),
-      url("../img/hero.jpg"); /* Linear gradient with the first color as the start and the second as the end */
-    background-size: cover; /* Makes the background image cover the entire container */
-    background-position: top;
-    position: relative;
+  height: 85vh; /* 85% of the Viewport height */
+  background-image: linear-gradient(
+      to right,
+      rgba(variables.$color-primary-light, 0.8),
+      rgba(variables.$color-primary-dark, 0.8)
+    ),
+    url("../img/hero-small.jpg"); /* Linear gradient with the first color as the start and the second as the end */
+  background-size: cover; /* Makes the background image cover the entire container */
+  background-position: top;
+  position: relative;
   
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);    
+    height: 95vh; /* 95% of the Viewport height */
+  }
+
+  @media (min-resolution: 192dpi) and // dpi: dots per inch, 192 stands for smarthphones
+         (min-width: fun.px-to-em(600)),
+         (-webkit-min-device-pixel-ratio: 2) and 
+         (min-width: fun.px-to-em(600)),
+         (min-width: fun.px-to-em(2000)) { 
+    background-image: linear-gradient(
+      to right,
+      rgba(variables.$color-secondary-light, 0.8),
+      rgba(variables.$color-secondary-dark, 0.8)
+    ),
+    url("../img/hero.jpg");
+  }
+
+  @include mix.respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+
     &__logo-box {
       position: absolute;
       /* 40px in x and y away from the last relative parent element*/

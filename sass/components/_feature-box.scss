@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as var;
+@use '../abstracts/mixings' as mix;
 
 .feature-box {
     background-color: rgba(var.$color-white, .8); // 0.8 of visibility = 20% opacity
@@ -8,6 +9,10 @@
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba(var.$color-black, .15);
     transition: transform .3s; // Instead all, we can use here the only animation that we use
+
+    @include mix.respond(tab-port) {
+        padding: 2rem;
+    }
 
     &:hover {
         transform: translateY(-1.5rem) scale(1.03);
@@ -23,6 +28,10 @@
         );
         background-clip: text;
         color: transparent;
+
+        @include mix.respond(tab-port) {
+            margin-bottom: 0;
+        }
     }
 
 }

@@ -1,9 +1,14 @@
 @use "../abstracts/variables" as vars;
+@use "../abstracts/mixings" as mix;
 
 .section-about {
     background-color: vars.$color-grey-light-1;
     padding: 25rem 0;
     margin-top: -20vh; // 20vh because that is the height of white space in header clip-path on the right
+
+    @include mix.respond(tab-port) {
+        padding: 35rem 0;
+    }
 }
 
 .section-features {
@@ -24,17 +29,29 @@
     & > * {
         transform: skewY(7deg);
     }
+
+    @include mix.respond(tab-port) {
+        padding: 10rem 0;
+    }
 }
 
 .section-tours {
     background-color: vars.$color-grey-light-1;
     padding: 25rem 0 15rem 0; // need adjustaments
     margin-top: -10rem; 
+
+    @include mix.respond(tab-port) {
+        padding: 20rem 0 10rem 0;
+    }
 }
 
 .section-stories {
     padding: 15rem 0;
     position: relative;
+
+    @include mix.respond(tab-port) {
+        padding: 10rem 0;
+    }
 }
 
 .section-book {
@@ -44,6 +61,10 @@
         vars.$color-primary-light, 
         vars.$color-primary-dark
     );
+
+    @include mix.respond(tab-port) {
+        padding: 10rem 0;
+    }
 }
 
 .book {
@@ -53,14 +74,43 @@
             rgba(vars.$color-white, .9) 50%,
             transparent 50%), 
         url(../img/nat-10.jpg);
-    background-size: 100%; // 100% means the same as 'cover'
+    background-size: 100%; // 100% means the same as 'cover' only in x direction
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba(vars.$color-black, 2); // posición de la sombra, color e intensidad
 
-    height: 50rem; // TODO: delete
+    @include mix.respond(tab-land) {
+        background-image: linear-gradient(
+            105deg,
+            rgba(vars.$color-white, .9) 0%,
+            rgba(vars.$color-white, .9) 65%,
+            transparent 65%), 
+        url(../img/nat-10.jpg);
+        background-size: cover;
+    }
+
+    @include mix.respond(tab-port) {
+        background-image: linear-gradient(
+            to right,
+            rgba(vars.$color-white, .9) 0%,
+            rgba(vars.$color-white, .9) 100% 
+        ), 
+        url(../img/nat-10.jpg);
+    }
 
     &__form {
         width: 50%;
         padding: 6rem;
+        
+        @include mix.respond(tab-land) {
+            width: 65% // Give form content more space to fit 
+        }    
+
+        @include mix.respond(tab-port) {
+            width: 100%;
+
+            .heading-secondary {
+                text-align: center;
+            }
+        }
     }
 }
