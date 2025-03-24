@@ -12,7 +12,13 @@
 
     opacity: 0;
     visibility: hidden;
-  
+    transition: all .3s;
+
+    @supports(backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px)) {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        background-color: rgba(var.$color-black, .4);
+    }
 
     &__content {
         @include mix.centerHorizVertic;
@@ -20,17 +26,48 @@
         width: 75%;
         background-color: var.$color-white;
         box-shadow: 0 2rem 4rem rgba(var.$color-black, .2);
-        border-radius: 3px;
+        border-radius: 5px;
         display: table;
         overflow: hidden;
         opacity: 0;
         transform: translate(-50%, -50%) scale(.1);
         transition: all .4s .2s;
+
+        @include mix.respond(tab-land) {
+            width: 80%;
+            height: fit-content;
+            display: block;
+        }
+
+        @include mix.respond(phone) {
+            height: 77%;
+        }
     }
 
     &__left {
         width: 33.333333%; // 1/3
         display: table-cell; //  all the brother elements with this have the same heigth
+
+        @include mix.respond(tab-land) {
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+    
+            img {
+                width: 50%;
+                height: auto;
+                object-fit: cover;
+                flex: 1; 
+            }
+        }
+
+        @include mix.respond(phone) {
+            height: 30%;
+
+            img:nth-child(2) {
+                display: none
+            }
+        }
     }
 
     &__right {
@@ -38,11 +75,27 @@
         display: table-cell; // all the brother elements with this have the same heigth
         vertical-align: middle;
         padding: 3rem 5rem;
+
+        @include mix.respond(tab-land) {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        @include mix.respond(phone) {
+            width: 100%;
+        }
     }
 
     &__img {
         display: block;
         width: 100%;
+        
+        @include mix.respond(tab-land) {
+            display: inline-block;
+            width: 48%;
+            vertical-align: top;
+        }
     }
 
     &__text {
@@ -61,6 +114,10 @@
         -ms-hypens: auto;
         -webkit-hypens: auto;
         hyphens: auto;
+
+        @include mix.respond(tab-land) {
+            column-count: 1;
+        }
     }
 
     // Open states of the popup

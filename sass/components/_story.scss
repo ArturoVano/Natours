@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as var;
+@use '../abstracts/mixings' as mix;
 
 .story {
     width: 75%;
@@ -15,6 +16,16 @@
     //     transform: skew(12deg);
     // }
 
+    @include mix.respond(tab-port) {
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+
+    @include mix.respond(phone) {
+        transform: skew(0);
+    }
+
     &__shape {
         width: 15rem;
         height: 15rem;
@@ -26,6 +37,22 @@
         // Remember: the best way to move an a float element is transform, not margins or others.
         transform: translateX(-3rem) skew(12deg);
         position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+        }
+
+        @supports (shape-outside: circle(0 0)) {
+            shape-outside: circle(50% at 50% 50%);
+            border-radius: none;
+        }
+
+        @include mix.respond(phone) {
+            transform: translateX(-3rem) skew(0);
+        }
     }
     // Remember: for responsivity, img´s always need a width
     &__img {
@@ -37,6 +64,10 @@
 
     &__text {
         transform: skew(12deg);
+
+        @include mix.respond(phone) {
+            transform: skew(0);
+        }
     }
 
     &__caption {

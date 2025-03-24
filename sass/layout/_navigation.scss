@@ -12,12 +12,17 @@
         width: 7rem;
         position: fixed;
         top: 7rem;
-        right: 6rem;
+        right: 7rem;
         border-radius: 50%;
         z-index: 2000;
         box-shadow: 0 1rem 3rem rgba(var.$color-black, .1);
         text-align: center;
         cursor: pointer;
+
+        @include mix.respond(tab-port) {
+            top: 4rem;
+            right: 4rem;
+        }
     }
 
     &__background {
@@ -26,13 +31,23 @@
         border-radius: 50%;
         position: fixed;
         top: 7rem;
-        right: 6.5rem;
+        right: 7.5rem;
         background-image: radial-gradient(
             var.$color-primary-light, 
             var.$color-primary-dark
         );
         z-index: 1000;
         transition: transform .8s cubic-bezier(0.65, 0, 0.35, 1);
+
+        @include mix.respond(tab-port) {
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+
+        // @include mix.respond(phone) {
+        //     top: 3.5rem;
+        //     right: 3.5rem;
+        // }
     }
 
     &__nav {
