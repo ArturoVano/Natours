@@ -27,8 +27,8 @@
          (min-width: fun.px-to-em(2000)) { 
     background-image: linear-gradient(
       to right,
-      rgba(variables.$color-secondary-light, 0.8),
-      rgba(variables.$color-secondary-dark, 0.8)
+      rgba(variables.$color-primary-light, 0.8),
+      rgba(variables.$color-primary-dark, 0.8)
     ),
     url("../img/hero.jpg");
   }

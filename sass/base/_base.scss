@@ -1,4 +1,4 @@
-@use "../abstracts/variables" as variables;
+@use "../abstracts/variables" as var;
 @use "../abstracts/mixings" as mix;
 
 /* Basic reset: */
@@ -44,4 +44,9 @@ body {
   @include mix.respond(tab-port) {
     padding: 0;
   }
+}
+
+::selection {
+  background-color: var.$color-primary;
+  color: var.$color-white;
 }
