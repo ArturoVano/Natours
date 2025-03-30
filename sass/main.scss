@@ -1,25 +1,25 @@
-@forward "./abstracts/functions";
-@forward "./abstracts/mixings";
+@use "./abstracts/functions";
+@use "./abstracts/mixings";
 
-@forward "./base/animations";
-@forward "./base/base";
-@forward "./base/typography";
-@forward "./base/utilities";
+@use "./base/animations";
+@use "./base/base";
+@use "./base/typography";
+@use "./base/utilities";
 
-@forward "./components/bg-video";
-@forward "./components/button";
-@forward "./components/composition";
-@forward "./components/feature-box";
-@forward "./components/form";
-@forward "./components/card";
-@forward "./components/story";
-@forward "./components/popup";
+@use "./components/bg-video";
+@use "./components/button";
+@use "./components/composition";
+@use "./components/feature-box";
+@use "./components/form";
+@use "./components/card";
+@use "./components/story";
+@use "./components/popup";
 
-@forward "./layout/grid";
-@forward "./layout/header";
-@forward "./layout/footer";
-@forward "./layout/navigation";
+@use "./layout/grid";
+@use "./layout/header";
+@use "./layout/footer";
+@use "./layout/navigation";
 
-@forward "./pages/home";
+@use "./pages/home";
 
-@forward "./abstracts/variables";
+@use "./abstracts/variables";
