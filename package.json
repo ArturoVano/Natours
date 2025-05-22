@@ -4,7 +4,9 @@
   "description": "Landing page for natours",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "npx sass --watch sass/main.scss css/style.css"
+    "watch:sass": "sass --watch sass/main.scss css/style.css",
+    "devserver": "live-server",
+    "start": "npm-run-all --parallel devserver watch:sass"
   },
   "author": "Arturo",
   "license": "ISC",
